@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="header">
+    <div class="list-row">
+      <div class="input-group mb-3">
+        <!-- <input type="text" class="form-control" placeholder="Search" [(ngModel)]="filter" /> -->
+      </div>
+    </div>
+  </div>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Order Number</th>
+        <th>Asset</th>
+        <th>Quantity</th>
+        <th>Vendor</th>
+        <th>Order Date</th>
+        <th>Delivery Date</th>
+        <th>Status</th>
+        <th>Edit/Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let purchase of this.PurchaseService.purchases">
+        <td (click)="populateForm(purchase)">{{ purchase.purchaseOrderId}}</td>
+        <td (click)="populateForm(purchase)">{{ purchase.orderNumber}}</td>
+        <td (click)="populateForm(purchase)">{{ purchase.asset.assetType}}</td>
+        <td (click)="populateForm(purchase)">{{ purchase.quantity}}</td>
+        <td (click)="populateForm(purchase)">{{ purchase.vendor.vendorName}}</td>
+        <td (click)="populateForm(purchase)">{{ purchase.orderDate}}</td>
+        <td (click)="populateForm(purchase)">{{ purchase.deliveryDate}}</td>
+        <td (click)="populateForm(purchase)">{{ purchase.deliveryDate}}</td>
+        <td (click)="populateForm(purchase)">{{ purchase.status.statusName}}</td>
+        <td>
+          <button class="btn btn-sm btn-info" (click)="updatePurchase(purchase.purchaseOrderId)">
+            E</button>&nbsp;
+          <button class="btn btn-sm btn-outline-danger" (click)="deletePurchaseById(purchaseOrderId)">
+            X
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="footer">
+    <!--Pagination-->
+    <pagination-controls (pageChange)="page=($event)"></pagination-controls>
+  </div>
+</div>
